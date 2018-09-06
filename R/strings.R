@@ -32,7 +32,7 @@ reducews <- function(x){
 #' @return
 #' @export
 #'
-#' @examples tokenize(str, ",", ":")
+#' @examples
 tokenize <- function(str, first.lev = ",", second.lev=NA)
 {
 	# Note - there are probably way better functions and data structures to handle this sort of thing in R

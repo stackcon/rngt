@@ -16,6 +16,3 @@ tokenize(str, first.lev = ",", second.lev = NA)
 \description{
 Function that chops a strings into tokens based on one or two delimiters
 }
-\examples{
-tokenize(str, ",", ":")
-}
