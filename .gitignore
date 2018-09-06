@@ -1,0 +1,31 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+**/.Rtmp
+
+
+## macOS system files
+#
+# ----------------
+**/.DS_Store
+**/.AppleDouble
+**/.LSOverride
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+**/.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+# ----------------
+
+
+## C temporary and related files
+#
+# ----------------
+**/*.o
+**/*.so
+**/*.a
+# ----------------
+

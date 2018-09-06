@@ -1,0 +1,11 @@
+Package: ngt
+Type: Package
+Title: General data science and utilities package for NGT group
+Version: 0.1.0
+Author: Conrad Stack
+Maintainer: The package maintainer <conrad.stack@effem.com>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
