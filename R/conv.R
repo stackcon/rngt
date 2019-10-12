@@ -43,3 +43,10 @@ col2hex = function(xx,transval = NULL){
 	}
 	outval
 }
+
+
+# convert raw to integers
+#|best|# sapply(test, as.integer)
+#|acceptable|# sapply(test, function(xx) as.integer( suppressMessages(dput(xx)) )) 
+
+

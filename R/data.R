@@ -47,12 +47,19 @@ col.missing <- function(dd){
 #' @export
 #'
 #' @examples
-fqtable <- function(vect, scaling = 1, ... ) {
+fqtable <- function(vect, scaling = 1, hightolow = TRUE, ... ) {
+
 	tmptab = table(vect, ...)
-	data.frame(
+
+	tmpdf = data.frame(
 		value = as(names(tmptab), typeof(vect)),
 		freq = as.numeric((tmptab / sum(tmptab)) * scaling)
 	)
+
+	if(hightolow)
+		tmpdf = tmpdf[order(tmpdf$freq, decreasing = TRUE),]
+
+	tmpdf
 }
 
 ####
@@ -78,8 +85,11 @@ check.numeric <- function(inp, val = TRUE , uvals = val, nsamp = NULL){
 	}
 
 	# check the values
-	if(is.data.frame(inp) || is.matrix(inp)) {
-		retval = apply(inp,2,.chknum)
+	if(is.data.frame(inp)) {
+		id <- sapply(inp, is.numeric)
+		if(any(!id)){
+			retval = lapply(inp[!id],.chknum)
+		}
 	} else {
 		retval = .chknum(inp)
 	}
