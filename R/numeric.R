@@ -4,3 +4,5 @@
 approx.zero <- function(x, tolerance = sqrt(.Machine$double.eps)) {
 	(x < tolerance) & (x > -tolerance)
 }
+
+
