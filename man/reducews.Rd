@@ -2,16 +2,42 @@
 % Please edit documentation in R/strings.R
 \name{reducews}
 \alias{reducews}
+\alias{rm.paren}
+\alias{rm.brack}
+\alias{rm.curly}
+\alias{remove.blocks}
 \title{Reduce consecutive, internal whitespace characters (not leading or trailing) to a single whitespace character}
 \usage{
 reducews(x)
+
+rm.paren(x)
+
+rm.brack(x)
+
+rm.curly(x)
+
+remove.blocks(x)
 }
 \arguments{
 \item{x}{A chacter vector}
 }
+\value{
+
+}
 \description{
 Reduce consecutive, internal whitespace characters (not leading or trailing) to a single whitespace character
 }
+\section{Functions}{
+\itemize{
+\item \code{rm.paren}: remove text within parentheses
+
+\item \code{rm.brack}: remove text within square braces
+
+\item \code{rm.curly}: remove text within curly braces
+
+\item \code{remove.blocks}: remove text within parentheses, or square or curly braces
+}}
+
 \examples{
 reducews("CCN      51")
 }

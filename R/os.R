@@ -41,7 +41,7 @@ get_os <- function(){
 #' @export
 #'
 #' @examples
-file.prefix <- function(filename)
+file_prefix <- function(filename)
 {
 
 	ftmp = strsplit(filename,"\\.")[[1]]
@@ -53,9 +53,9 @@ file.prefix <- function(filename)
 }
 
 
-#' @describeIn file.prefix Return the part of the file before the final period (i.e., the file extension).  The file does not have to exist
+#' @describeIn file_prefix Return the part of the file before the final period (i.e., the file extension).  The file does not have to exist
 #' @export
-file.ext <- function(filename)
+file_ext <- function(filename)
 {
 	ftmp = strsplit(filename,"\\.")[[1]]
 	if(length(ftmp) == 1)

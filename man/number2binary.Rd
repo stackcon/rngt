@@ -7,7 +7,7 @@
 number2binary(number, noBits)
 }
 \arguments{
-\item{number}{the number to convert to a binary vector}
+\item{number}{a number to convert to a binary vector}
 
 \item{noBits}{the final length of the binary vector.  If missing, return the full (native) bit vector}
 }
@@ -16,4 +16,10 @@ a vector of 0's and 1's
 }
 \description{
 Convert number to bit vector
+}
+\examples{
+number2binary(1)
+number2binary(2)
+number2binary(3)
+number2binary(4)
 }

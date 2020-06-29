@@ -9,6 +9,9 @@ unfactor(df)
 \arguments{
 \item{df}{the data frame to operate on}
 }
+\value{
+
+}
 \description{
 Convert all factors in a data.frame to strings
 }

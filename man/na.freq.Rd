@@ -3,14 +3,22 @@
 \name{na.freq}
 \alias{na.freq}
 \alias{col.missing}
+\alias{row.missing}
 \title{Return the relative frequency of missing values}
 \usage{
 na.freq(vec)
 
 col.missing(dd)
+
+row.missing(dd)
 }
 \arguments{
 \item{vec}{A vector}
+
+\item{dd}{A data.frame}
+}
+\value{
+
 }
 \description{
 Return the relative frequency of missing values
@@ -18,5 +26,7 @@ Return the relative frequency of missing values
 \section{Functions}{
 \itemize{
 \item \code{col.missing}: Function that returns the number frequency of missing values for each column
+
+\item \code{row.missing}: Function that returns the number frequency of missing values for each row
 }}
 

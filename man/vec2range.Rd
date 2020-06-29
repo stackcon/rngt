@@ -11,6 +11,9 @@ vec2range(vec, with.max = NULL)
 
 \item{with.max}{(optional) A number to use as the end point of the last range}
 }
+\value{
+
+}
 \description{
 A function which converts a one-dimensional vector into a 2-column matrix of pairwise ranges that represent the range of numbers between subsequent values
 }

@@ -2,15 +2,22 @@
 % Please edit documentation in R/data.R
 \name{fqtable}
 \alias{fqtable}
-\title{Calculate table and return relative frequencies}
+\title{Tabulate and return relative frequencies of values}
 \usage{
-fqtable(vect, scaling = 1, ...)
+fqtable(vect, scaling = 1, hightolow = TRUE, ...)
 }
 \arguments{
+\item{vect}{input vector}
+
 \item{scaling}{multiple frequencies by this scaling factor (e.g, 100 to get percentages)}
 
-\item{...}{}
+\item{hightolow}{should returned frequency table elements be sorted from high to low?}
+
+\item{...}{additional arguments passed to `table` function}
+}
+\value{
+
 }
 \description{
-Calculate table and return relative frequencies
+Tabulate and return relative frequencies of values
 }

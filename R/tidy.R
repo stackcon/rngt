@@ -8,21 +8,29 @@
 
 #' Split column values by a delimiter, then expand them into new rows
 #'
-#' @param indf
-#' @param .var
+#' @param indf input data.frame
+#' @param .var the column in `indf` to split. should be character-type
+#' @param delim the string delimiter to split on
 #'
-#' @return
+#' @return A data frame where data frae, `indf`, where the strings in  column, `.var`, have been split by delimiter, `delim`
 #' @export
+#' @importFrom magrittr %>%
+#' @importFrom dplyr mutate_at vars
+#' @importFrom rlang enquo
+#' @importFrom tidyr unnest
 #'
 #' @examples
-expand_on <- function(indf, .var){
-
+#' library(dplyr)
+#' library(magrittr)
+#' library(tidyr)
+#' iris %>%
+#' mutate_at(vars(Species), as.character) %>%
+#' expand_on(Species, "o") %>%
+#' select(Species) %>%
+#' table
+expand_on <- function(indf, .var, delim=";"){
 	tmpvar <- enquo(.var)
 	indf %>%
-		mutate_at( vars(!!tmpvar), strsplit, split=";", fixed=T) %>%
+		mutate_at( vars(!!tmpvar), strsplit, split=delim, fixed=T) %>%
 		unnest(!!tmpvar)
 }
-
-
-
-

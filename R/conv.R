@@ -8,13 +8,17 @@
 
 #' Convert number to bit vector
 #'
-#' @param number the number to convert to a binary vector
+#' @param number a number to convert to a binary vector
 #' @param noBits the final length of the binary vector.  If missing, return the full (native) bit vector
 #'
 #' @return a vector of 0's and 1's
 #' @export
 #'
 #' @examples
+#' number2binary(1)
+#' number2binary(2)
+#' number2binary(3)
+#' number2binary(4)
 number2binary = function(number, noBits) {
 
 	binary_vector = rev(as.numeric(intToBits(number)))
@@ -47,6 +51,6 @@ col2hex = function(xx,transval = NULL){
 
 # convert raw to integers
 #|best|# sapply(test, as.integer)
-#|acceptable|# sapply(test, function(xx) as.integer( suppressMessages(dput(xx)) )) 
+#|acceptable|# sapply(test, function(xx) as.integer( suppressMessages(dput(xx)) ))
 
 

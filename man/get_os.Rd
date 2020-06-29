@@ -6,6 +6,9 @@
 \usage{
 get_os()
 }
+\value{
+
+}
 \description{
 Return simplified operating system name
 }

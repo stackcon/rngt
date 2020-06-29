@@ -9,6 +9,9 @@ n.unique(x)
 \arguments{
 \item{x}{A vector}
 }
+\value{
+
+}
 \description{
 Function that returns the number of unique values in a particular vector
 }

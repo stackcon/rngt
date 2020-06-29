@@ -20,38 +20,20 @@ reducews <- function(x){
 	gsub("(\\s)\\s+","\\1",x)
 }
 
-
-
-
-#' Function that chops a strings into tokens based on one or two delimiters
-#'
-#' @param str A string
-#' @param first.lev Delimiter to chop string on first
-#' @param second.lev Delimiter to chop up results from first one
-#'
-#' @return
-#' @export
-#'
-#' @examples
-ngt_tokenize <- function(str, first.lev = ",", second.lev=NA)
-{
-	# Note - there are probably way better functions and data structures to handle this sort of thing in R
-	#
-	toks = strsplit(str, first.lev )
-	if(!is.na(second.lev))
-		toks = lapply(toks, strsplit, split=second.lev )
-	toks
-}
-
-
-
 # Remove different blocks that are delineated by parentheses, square brackets, or curly brackets
+#' @describeIn reducews remove text within parentheses
 rm.paren <- function(x) gsub("\\([^\\(\\)]*\\)","",x)
+#' @describeIn reducews remove text within square braces
 rm.brack <- function(x) gsub("\\[[^\\[\\]*\\]","",x)
+#' @describeIn reducews remove text within curly braces
+#' @export
 rm.curly <- function(x) gsub("\\{[^\\{\\}]*\\}","",x)
-remove.blocks <- function(xx) {
+#' @describeIn reducews remove text within parentheses, or square or curly braces
+#' @export
+remove.blocks <- function(x) {
 	rm.paren(rm.brack(rm.curly(xx)))  # remove all three
 }
+
 
 #' Check whether each string contains any ASCII characters
 #'
@@ -61,9 +43,7 @@ remove.blocks <- function(xx) {
 #' @return a logical vector the same length as x
 #' @export
 #'
-#' @examples
-any.nonascii <- function(x, ...) {
-
+any_nonascii <- function(x, ...) {
 	grepl("[^\\x00-\\x7F]", x , perl = TRUE, useBytes = TRUE, ...)
 }
 
@@ -83,8 +63,8 @@ any.nonascii <- function(x, ...) {
 #' @return
 #' @export
 #'
-#' @examples  get.anno("this is a (test)")
-get.anno <- function(x,
+#' @examples  get_anno("this is a (test)")
+get_anno <- function(x,
 							opening="(",
 							closing=")",
 							auto.fix=FALSE,
@@ -118,6 +98,25 @@ get.anno <- function(x,
 	retval
 }
 
+
+#' Function that chops a strings into tokens based on one or two delimiters
+#'
+#' @param str A string
+#' @param first.lev Delimiter to chop string on first
+#' @param second.lev Delimiter to chop up results from first one
+#'
+#' @return
+#' @export
+#'
+ngt_tokenize <- function(str, first.lev = ",", second.lev=NA)
+{
+	# Note - there are probably way better functions and data structures to handle this sort of thing in R
+	#
+	toks = strsplit(str, first.lev )
+	if(!is.na(second.lev))
+		toks = lapply(toks, strsplit, split=second.lev )
+	toks
+}
 
 
 

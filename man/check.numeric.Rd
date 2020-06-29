@@ -15,6 +15,9 @@ check.numeric(inp, val = TRUE, uvals = val, nsamp = NULL)
 
 \item{nsamp}{The number of (down) samples to return.  For instances where inp is very large}
 }
+\value{
+
+}
 \description{
 Find and return values that look non-numeric
 }

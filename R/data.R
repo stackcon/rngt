@@ -23,6 +23,7 @@ n.unique <- function(x){
 #' Return the relative frequency of missing values
 #'
 #' @param vec A vector
+#' @param dd A data.frame
 #'
 #' @return
 #' @export
@@ -43,11 +44,12 @@ row.missing <- function(dd){
 }
 
 
-#' Calculate table and return relative frequencies
+#' Tabulate and return relative frequencies of values
 #'
-#' @param vect
+#' @param vect input vector
 #' @param scaling multiple frequencies by this scaling factor (e.g, 100 to get percentages)
-#' @param ...
+#' @param hightolow should returned frequency table elements be sorted from high to low?
+#' @param ... additional arguments passed to `table` function
 #'
 #' @return
 #' @export
@@ -123,15 +125,18 @@ unfactor <- function(df) {
 }
 
 
-#' Assign ID's to rows based on their valuees
+#' Cluster identical rows where all values are identical
 #'
-#' @param df the data frame to operate on
+#' @param rcfilt the data frame to operate on
+#' @param stopmax the number of pairs of rows to check if identical (it's not very efficient ...)
+#' @param verbose verbose output
 #'
-#' @return
+#' @return a vector of cluster ID's, where all rows in a cluster are identical
 #' @export
+#' @importFrom igraph graph_from_edgelist components
+#' @importFrom utils combn
 #'
-#' @examples
-label_duplicates <- function(rcfilt, stopmax=Inf, verbose=FALSE) {
+cluster_identical_rows <- function(rcfilt, stopmax=Inf, verbose=FALSE) {
 
 	npairs = choose(nrow(rcfilt), 2)
 	if(npairs > stopmax){

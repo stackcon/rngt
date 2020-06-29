@@ -36,37 +36,31 @@ vec2range <- function(vec, with.max=NULL){
 #'  Function that returns the indices of the top N observations
 # NB -> which.topn(...,n=1) is equivalent to which.max
 #'
-#' @param vect A numeric vector
-#' @param n
+#' @param vect a vector
+#' @param n number of elements to return
 #'
-#' @return
+#' @return Returns the positions of top or bottom `n` elements of a vector
 #' @export
 #'
 #' @examples
-which.topn <- function(vect, n){
+#' which.top(1:10, 7)
+#' which.bottom(1:10, 3)
+which.top <- function(vect, n = 5){
 	thresh = min(head(sort(vect,decreasing=TRUE),n))
 	which(vect >= thresh)
 }
 
-#' @describeIn which.topn return the indices of NA values
+#' @describeIn which.top return the indices of NA values
+#' @export
 which.na <- function(vect) which(is.na(vect))
 
-#' @describeIn which.topn return the indices of the top 5 largest elements
-which.top5 <- function(...)  which.topn(..., n=5)
-#' @describeIn which.topn return the indices of the top 10 largest elements
-which.top10 <- function(...)  which.topn(..., n=10)
 
-
-#' @describeIn which.topn return the indices of the N smallest elements
-which.botn <- function(vect, n){
+#' @describeIn which.top return the indices of the N smallest elements
+#' @export
+which.bottom <- function(vect, n = 5){
 	thresh = max(head(sort(vect,decreasing=FALSE), n))
 	which(vect <= thresh)
 }
-
-#' @describeIn which.topn return the bottom 5 element
-which.bot5 <- function(...)  which.botn(..., n=5)
-#' @describeIn which.topn return the bottom 10 elements
-which.bot10 <- function(...)  which.botn(..., n=10)
 
 
 #' Return logical vector indicating location of low-incidence values in, x
@@ -75,12 +69,15 @@ which.bot10 <- function(...)  which.botn(..., n=10)
 #' @param min.count the threshold number of occurrences
 #' @param min.freq if set, then use frequency threshold instead of count
 #' @param use.median Set minimum count to the median occurence in x
+#' @param ... arguments passed to `low_incidence`
 #'
 #' @return
 #' @export
 #'
 #' @examples
-low.incidence <- function(x, min.count=1, min.freq, use.median = FALSE) {
+#' tmprnd = round(iris$Sepal.Length)
+#' table(tmprnd, low_incidence(tmprnd, min.count = 5))
+low_incidence <- function(x, min.count=1, min.freq, use.median = FALSE) {
 
 	retval = NULL
 
@@ -108,29 +105,49 @@ low.incidence <- function(x, min.count=1, min.freq, use.median = FALSE) {
 	retval
 }
 
-#' @describeIn low.incidence return the indices of low incidence values
-which.low <- function(...){
-	which(low.incidence(...))
+#' @describeIn low_incidence an alias for `low_incidence`
+#' @export
+are_few <- function(...){
+	low_incidence(...)
 }
 
-#' Identify duplicate values within a vector
+#' @describeIn low_incidence return the indices of low incidence values
+#' @export
+which_low <- function(...){
+	which(low_incidence(...))
+}
+
+
+#' List duplicate values
 #'
 #' @param vect A vector that potentially contains duplicates
+#' @param ... arguments passed to `get_duplicated`
 #'
 #' @return the names of duplicated values
 #' @export
+#' @importFrom methods as
 #'
 #' @examples
-get.duplicated <- function(vect) {
-	output=NULL
+#' get_duplicated( c(1:10, 1:5) )
+#' get_duplicated( c(1:10) )
+get_duplicated <- function(vect) {
+	output=c()
 	junk = table(vect)
 	if(any(junk>1))
 		output = as( names(junk)[which(junk>1)], typeof(vect) )
 	output
 }
 
-#' @describeIn get.dups
-has.duplicated <- function(...) !is.null(get.duplicated(...))
+#' @describeIn get_duplicated check if any are duplicated
+#' @export
+has_duplicated <- function(...) length(get_duplicated(...)) > 0
+
+#' @describeIn get_duplicated return indices of all values that are not unique in `vect`
+#' @export
+which.duplicated <- function(vect){
+	dupvalues = get_duplicated(vect)
+	which(vect %in% dupvalues)
+}
 
 
 
