@@ -5,9 +5,6 @@
 # @author ConradStack <conrad.stack@gmail.com>
 #
 
-
-
-
 # # Mimics 'clear' command from unix ... sort of
 # makeActiveBinding(sym = "clear",
 # 						fun = function(value){
@@ -24,6 +21,8 @@
 # 						env = .GlobalEnv
 # )
 
+
+
 #' Read data table from system clipboard
 #'
 #' @param ... arguments passed to read.table
@@ -38,9 +37,6 @@ read.cb <- function(...) {
 	if (!ismac) read.table(file="clipboard", ...)
 	else read.table(pipe("pbpaste"), ...)
 }
-
-
-
 
 
 

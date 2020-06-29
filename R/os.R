@@ -52,6 +52,7 @@ file.prefix <- function(filename)
 	fpre
 }
 
+
 #' @describeIn file.prefix Return the part of the file before the final period (i.e., the file extension).  The file does not have to exist
 #' @export
 file.ext <- function(filename)
@@ -63,6 +64,10 @@ file.ext <- function(filename)
 	fext = tail(ftmp,1)
 	fext
 }
+
+
+
+
 
 
 

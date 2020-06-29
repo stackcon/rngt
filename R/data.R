@@ -37,6 +37,12 @@ col.missing <- function(dd){
 	sapply(dd, na.freq)
 }
 
+#' @describeIn na.freq Function that returns the number frequency of missing values for each row
+row.missing <- function(dd){
+	apply(dd,1, na.freq)
+}
+
+
 #' Calculate table and return relative frequencies
 #'
 #' @param vect
@@ -53,6 +59,7 @@ fqtable <- function(vect, scaling = 1, hightolow = TRUE, ... ) {
 
 	tmpdf = data.frame(
 		value = as(names(tmptab), typeof(vect)),
+		n = unname(as.integer(tmptab)),
 		freq = as.numeric((tmptab / sum(tmptab)) * scaling)
 	)
 
@@ -61,6 +68,8 @@ fqtable <- function(vect, scaling = 1, hightolow = TRUE, ... ) {
 
 	tmpdf
 }
+
+
 
 ####
 
@@ -114,5 +123,40 @@ unfactor <- function(df) {
 }
 
 
+#' Assign ID's to rows based on their valuees
+#'
+#' @param df the data frame to operate on
+#'
+#' @return
+#' @export
+#'
+#' @examples
+label_duplicates <- function(rcfilt, stopmax=Inf, verbose=FALSE) {
+
+	npairs = choose(nrow(rcfilt), 2)
+	if(npairs > stopmax){
+		stop(sprintf("Stopping because number of pairs to search (%d) is higher than stopmax (%d)", npairs, stopmax))
+	}
+
+	inds = combn(nrow(rcfilt), 2)
+	vsame = rep(NA, ncol(inds))
+	for(i in seq(ncol(inds))){
+	    if(verbose && i %% 1000 == 0) print(i)
+	    v1 = unlist(rcfilt[inds[1,i],])
+	    v2 = unlist(rcfilt[inds[2,i],])
+	    vsame[i] = isTRUE(
+	        all.equal(v1, v2, check.attributes=FALSE,
+	                  tolerance = (.Machine$double.eps)^(1/2))
+	    )
+	}
+
+	# ... connect identical entries and their communities
+	vyes = t(inds[1:2, vsame])
+	vgr = igraph::graph_from_edgelist(vyes, directed=FALSE)
+	vclust = igraph::components(vgr)
+
+	# return
+	return(vclust$membership)
+}
 
 

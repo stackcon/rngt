@@ -6,8 +6,6 @@
 #
 
 
-
-
 #' Convert a vector of integers in to a matrix of ranges
 #'
 #' A function which converts a one-dimensional vector into a 2-column matrix of pairwise ranges that represent the range of numbers between subsequent values
@@ -30,9 +28,6 @@ vec2range <- function(vec, with.max=NULL){
 	}
 	out
 }
-
-#
-
 
 #####
 

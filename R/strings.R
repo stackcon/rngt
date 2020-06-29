@@ -33,7 +33,7 @@ reducews <- function(x){
 #' @export
 #'
 #' @examples
-tokenize <- function(str, first.lev = ",", second.lev=NA)
+ngt_tokenize <- function(str, first.lev = ",", second.lev=NA)
 {
 	# Note - there are probably way better functions and data structures to handle this sort of thing in R
 	#
@@ -84,7 +84,11 @@ any.nonascii <- function(x, ...) {
 #' @export
 #'
 #' @examples  get.anno("this is a (test)")
-get.anno <- function(x, opening="(", closing=")", auto.fix=FALSE, other.closing=c("}","\\]","\\)")) {
+get.anno <- function(x,
+							opening="(",
+							closing=")",
+							auto.fix=FALSE,
+							other.closing=c("}","\\]","\\)")) {
 
 	.GENERAL = "^([^\\%1$s]*)\\%1$s([^\\%2$s]*)\\%2$s(.*)$"
 	.USE = sprintf(.GENERAL,opening,closing)
