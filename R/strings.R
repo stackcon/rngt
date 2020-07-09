@@ -5,13 +5,19 @@
 # @author ConradStack <conrad.stack@gmail.com>
 #
 
+.REGEX_parenthesis = "\\([^\\(\\)]{0,}\\)"
+.REGEX_bracketed = "\\[[^\\[\\]]{0,}\\]"
+.REGEX_curlies = "\\{[^\\{\\}]{0,}\\}"
+
 
 #' Reduce consecutive, internal whitespace characters (not leading or trailing) to a single whitespace character
 #'
 #' @param x A chacter vector
+#' @param ... additional arguments passed to `regex` function
 #'
 #' @return
 #' @export
+#' @importFrom stringr str_remove_all
 #'
 #' @examples
 #' reducews("CCN      51")
@@ -21,17 +27,23 @@ reducews <- function(x){
 }
 
 # Remove different blocks that are delineated by parentheses, square brackets, or curly brackets
+
 #' @describeIn reducews remove text within parentheses
-rm.paren <- function(x) gsub("\\([^\\(\\)]*\\)","",x)
+#' @export
+rm.paren <- function(x, ...) str_remove_all(x, stringr::regex(.REGEX_parenthesis, ...) )
+
 #' @describeIn reducews remove text within square braces
-rm.brack <- function(x) gsub("\\[[^\\[\\]*\\]","",x)
+#' @export
+rm.brack <- function(x, ...) str_remove_all(x, stringr::regex(.REGEX_bracketed, ...))
+
 #' @describeIn reducews remove text within curly braces
 #' @export
-rm.curly <- function(x) gsub("\\{[^\\{\\}]*\\}","",x)
+rm.curly <- function(x, ...) str_remove_all(x, stringr::regex(.REGEX_curlies, ...))
+
 #' @describeIn reducews remove text within parentheses, or square or curly braces
 #' @export
-remove.blocks <- function(x) {
-	rm.paren(rm.brack(rm.curly(xx)))  # remove all three
+remove.blocks <- function(x, ...) {
+	rm.paren(rm.brack(rm.curly(x, ...), ...), ...)  # remove all three
 }
 
 

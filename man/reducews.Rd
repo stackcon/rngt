@@ -10,16 +10,18 @@
 \usage{
 reducews(x)
 
-rm.paren(x)
+rm.paren(x, ...)
 
-rm.brack(x)
+rm.brack(x, ...)
 
-rm.curly(x)
+rm.curly(x, ...)
 
-remove.blocks(x)
+remove.blocks(x, ...)
 }
 \arguments{
 \item{x}{A chacter vector}
+
+\item{...}{additional arguments passed to `regex` function}
 }
 \value{
 

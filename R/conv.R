@@ -41,7 +41,7 @@ number2binary = function(number, noBits) {
 #' @examples col2hex("red", "2F")
 col2hex = function(xx,transval = NULL){
 
-	outval = paste(c("#",sprintf("%02X",col2rgb(xx,alpha=T)[,1])),collapse="")
+	outval = paste(c("#",sprintf("%02X", grDevices::col2rgb(xx,alpha=T)[,1])),collapse="")
 	if(!is.null(transval)){
 		substring(outval,nchar(outval)-1,nchar(outval)) <- transval
 	}

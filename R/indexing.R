@@ -14,6 +14,7 @@
 #' @param with.max (optional) A number to use as the end point of the last range
 #'
 #' @return
+#' @importFrom utils head tail
 #' @export
 #'
 #' @examples
@@ -82,7 +83,7 @@ low_incidence <- function(x, min.count=1, min.freq, use.median = FALSE) {
 	retval = NULL
 
 	if(use.median) {
-		min.count = median(tmptab)
+		min.count = stats::median(tmptab)
 		tmpinds = which(tmptab < min.count)
 	}
 

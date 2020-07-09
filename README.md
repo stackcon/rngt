@@ -17,11 +17,15 @@ git clone https://github.com/stackcon/rngt.git
 
 # ... <make changes to code> ...
 
-# Rebuild documentation and package metadata (from root directory)
+# Rebuild and check package:
+# ... (CLI, from project root directory) 
 Rscript --vanilla -e 'roxygen2::roxygenise(clean=TRUE)'
-
-# Check package (from parent directory)
 R CMD check rngt
+
+# ... (In R) 
+roxygen2::roxygenise(clean=TRUE)
+devtools::check()
+
 ```
 
 

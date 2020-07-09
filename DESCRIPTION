@@ -1,12 +1,12 @@
 Package: rngt
 Type: Package
 Title: General data science and utilities package
-Version: 0.3.0
+Version: 0.3.1
 Author: Conrad Stack
 Maintainer: The package maintainer <conrad.stack@effem.com>
-Description: General data science utilities
-License: GPL-3 | file LICENSE
+Description: This package contains a wide range of utility functions, mostly for data science work.
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.0
-Imports: methods, igraph, rlang, magrittr, dplyr, purrr, tidyr
+Imports: methods, utils, igraph, rlang, magrittr, dplyr, tidyr, stringr
