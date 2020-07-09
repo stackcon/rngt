@@ -26,6 +26,10 @@ R CMD check rngt
 roxygen2::roxygenise(clean=TRUE)
 devtools::check()
 
+
+# Install package 
+devtools::install()
+
 ```
 
 

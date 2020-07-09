@@ -6,6 +6,9 @@
 \alias{rm.brack}
 \alias{rm.curly}
 \alias{remove.blocks}
+\alias{extract.paren}
+\alias{extract.brack}
+\alias{extract.curly}
 \title{Reduce consecutive, internal whitespace characters (not leading or trailing) to a single whitespace character}
 \usage{
 reducews(x)
@@ -17,6 +20,12 @@ rm.brack(x, ...)
 rm.curly(x, ...)
 
 remove.blocks(x, ...)
+
+extract.paren(x, ...)
+
+extract.brack(x, ...)
+
+extract.curly(x, ...)
 }
 \arguments{
 \item{x}{A chacter vector}
@@ -38,6 +47,12 @@ Reduce consecutive, internal whitespace characters (not leading or trailing) to 
 \item \code{rm.curly}: remove text within curly braces
 
 \item \code{remove.blocks}: remove text within parentheses, or square or curly braces
+
+\item \code{extract.paren}: extract parenthetical expressions
+
+\item \code{extract.brack}: extract parenthetical expressions
+
+\item \code{extract.curly}: extract parenthetical expressions
 }}
 
 \examples{

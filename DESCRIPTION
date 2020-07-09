@@ -1,7 +1,7 @@
 Package: rngt
 Type: Package
 Title: General data science and utilities package
-Version: 0.3.1
+Version: 0.3.2
 Author: Conrad Stack
 Maintainer: The package maintainer <conrad.stack@effem.com>
 Description: This package contains a wide range of utility functions, mostly for data science work.

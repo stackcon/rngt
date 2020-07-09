@@ -46,8 +46,20 @@ remove.blocks <- function(x, ...) {
 	rm.paren(rm.brack(rm.curly(x, ...), ...), ...)  # remove all three
 }
 
+#' @describeIn reducews extract parenthetical expressions
+#' @export
+extract.paren <- function(x, ...) str_extract_all(x, stringr::regex(.REGEX_parenthesis, ...), simplify = F )
 
-#' Check whether each string contains any ASCII characters
+#' @describeIn reducews extract parenthetical expressions
+#' @export
+extract.brack <- function(x, ...) str_extract_all(x, stringr::regex(.REGEX_bracketed, ...), simplify = F )
+
+#' @describeIn reducews extract parenthetical expressions
+#' @export
+extract.curly <- function(x, ...) str_extract_all(x, stringr::regex(.REGEX_curlies, ...), simplify = F )
+
+
+#' Check for any non-ASCII characters
 #'
 #' @param x vector of strings
 #' @param ... additional arguments passed to grepl
@@ -55,11 +67,13 @@ remove.blocks <- function(x, ...) {
 #' @return a logical vector the same length as x
 #' @export
 #'
-any_nonascii <- function(x, ...) {
+has_nonascii <- function(x, ...) {
 	grepl("[^\\x00-\\x7F]", x , perl = TRUE, useBytes = TRUE, ...)
 }
 
-
+#' @describeIn has_nonascii (DEPRECATED) alias for has_nonascii, included for back-compatibility
+#' @export
+any_nonascii <- function(...) has_nonascii(...)
 
 
 # Method that extracts (generally) parenthetical information from a name
